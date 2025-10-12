@@ -56,3 +56,5 @@ nunit-*.xml
 # Local .NET install
 .dotnet
 clickstops.md
+clickstops.md.backup
+clickstops.md.original
