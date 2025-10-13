@@ -2,5 +2,6 @@
     "chat.disableAIFeatures": true,
     "editor.fontSize": 24,
     "editor.formatOnSave": true,
-    "terminal.integrated.fontSize": 26
+    "terminal.integrated.fontSize": 26,
+    "workbench.colorTheme": "GitHub Light"
 }
