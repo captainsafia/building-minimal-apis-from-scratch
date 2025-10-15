@@ -7,7 +7,7 @@ using var cts = new CancellationTokenSource();
 
 var serverTask = server.StartAsync(cts.Token);
 
-Console.WriteLine($"Listening on http://localhost:{port}. Press `Esc` to close server...");
+Console.WriteLine($"Listening on http://localhost:{port}. Press `Ctrl+C` to close server...");
 while (Console.ReadKey(true).Key != ConsoleKey.Escape) { }
 
 Console.WriteLine("Stopping the server...");
@@ -15,21 +15,15 @@ cts.Cancel();
 await serverTask;
 Console.WriteLine("Server stopped. Exiting...");
 
-public class Server : IDisposable
+public class Server(int port) : IDisposable
 {
-    private readonly int _port;
     private HttpListener? _listener;
     private bool _disposed;
-
-    public Server(int port)
-    {
-        _port = port;
-    }
 
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         _listener = new HttpListener();
-        _listener.Prefixes.Add($"http://localhost:{_port}/");
+        _listener.Prefixes.Add($"http://localhost:{port}/");
         _listener.Start();
 
         Console.WriteLine("Server started successfully.");
@@ -57,7 +51,7 @@ public class Server : IDisposable
         try
         {
             using var response = context.Response;
-            
+
             Console.WriteLine($"{DateTime.Now:yyyy-MM-dd HH:mm:ss} - {context.Request.HttpMethod} {context.Request.Url?.PathAndQuery}");
 
             response.ContentType = "text/plain";

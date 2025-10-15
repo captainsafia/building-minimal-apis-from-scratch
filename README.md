@@ -12,7 +12,7 @@ The entire API is implemented in a single file-based C# app and can be executed 
 dotnet run app.cs
 ```
 
-The server will start listening on `http://localhost:8080`. You can stop the server by pressing the `Esc` key.
+The server will start listening on `http://localhost:8080`. You can stop the server by pressing the `Ctrl+C` key combination.
 
 ## Running Tests with Hurl
 
@@ -23,20 +23,17 @@ This project uses [Hurl](https://hurl.dev/) to run HTTP tests against the API. H
 Install Hurl using one of the following methods:
 
 **macOS:**
-
 ```bash
 brew install hurl
 ```
 
 **Linux:**
-
 ```bash
 curl -LO https://github.com/Orange-OpenSource/hurl/releases/latest/download/hurl_x.x.x_amd64.deb
 sudo dpkg -i hurl_x.x.x_amd64.deb
 ```
 
 **Windows:**
-
 ```bash
 choco install hurl
 ```
@@ -46,13 +43,11 @@ For more installation options, see the [Hurl installation guide](https://hurl.de
 ### Running the Tests
 
 1. First, start the application in one terminal:
-
    ```bash
    dotnet run app.cs
    ```
 
 2. In another terminal, run the Hurl tests:
-
    ```bash
    hurl --test katas.hurl
    ```
@@ -60,19 +55,16 @@ For more installation options, see the [Hurl installation guide](https://hurl.de
    This will execute all test entries in the file and display the results.
 
 3. To run tests with verbose output:
-
    ```bash
    hurl --test --verbose katas.hurl
    ```
 
 4. To run a specific test or see detailed output for debugging:
-
    ```bash
    hurl katas.hurl
    ```
 
 The `katas.hurl` file contains 13 test entries organized by "clickstops" that test various features:
-
 - **Clickstop 1-5**: Basic routing and middleware (404 handling)
 - **Clickstop 6**: Query string parameter binding
 - **Clickstop 8**: HTTP method routing (GET, POST, 405 errors)
