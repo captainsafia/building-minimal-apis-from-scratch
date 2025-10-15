@@ -1,57 +1,45 @@
-# Clickstop 1-5: Routing and Middleware
-
+# Entry 1: Validates root endpoint returns 200 OK
 GET http://localhost:8080/
 Accept: text/plain
 HTTP 200
 
+# Entry 2: Validates nonexistent route returns 404 Not Found
 GET http://localhost:8080/nonexistent
 Accept: text/plain
 HTTP 404
 
+# Entry 3: Validates /bye endpoint returns 200 OK
 GET http://localhost:8080/bye
 Accept: text/plain
 HTTP 200
 
-###############################################################################
-# Clickstop 6: Parameter Binding Tests
-# Test query string parameter binding
-
+# Entry 4: Tests query string parameter binding with name parameter
 GET http://localhost:8080/hello?name=Safia
 Accept: text/plain
 HTTP 200
 
-# Test with different parameter values
-
+# Entry 5: Tests query string parameter binding with year parameter
 GET http://localhost:8080/age?year=1996
 Accept: text/plain
 HTTP 200
 
-###############################################################################
-# Clickstop 8: HTTP Method Routing Tests
-# Test GET endpoint
-
+# Entry 6: Tests GET method endpoint with query parameter
 GET http://localhost:8080/hello?name=Safia
 Accept: text/plain
 HTTP 200
 
-# Test POST endpoint
-
+# Entry 7: Tests POST method endpoint returns 201 Created
 POST http://localhost:8080/post?id=123
 Content-Length: 0
 Accept: text/plain
 HTTP 201
 
-# Test invalid HTTP method endpoint
-
+# Entry 8: Tests invalid HTTP method returns 405 Method Not Allowed
 GET http://localhost:8080/post?id=123
 Accept: text/plain
 HTTP 405
 
-
-###############################################################################
-# Clickstop 14: JSON Body Binding Tests
-# Test POST with JSON body
-
+# Entry 9: Tests POST with JSON body for incomplete todo item
 POST http://localhost:8080/post?id=200
 Content-Type: application/json
 {
@@ -60,8 +48,7 @@ Content-Type: application/json
 }
 HTTP 200
 
-# Test POST with JSON body - completed todo
-
+# Entry 10: Tests POST with JSON body for completed todo item
 POST http://localhost:8080/post?id=201
 Content-Type: application/json
 {
@@ -70,8 +57,7 @@ Content-Type: application/json
 }
 HTTP 200
 
-# Test POST with complex JSON
-
+# Entry 11: Tests POST with complex JSON body
 POST http://localhost:8080/post?id=202
 Content-Type: application/json
 {
@@ -80,16 +66,12 @@ Content-Type: application/json
 }
 HTTP 200
 
-###############################################################################
-# Clickstop 15-16: Metadata and Authorization Tests
-# Test public endpoint (should work)
-
+# Entry 12: Tests public endpoint returns 200 OK without authentication
 GET http://localhost:8080/public
 Accept: text/plain
 HTTP 200
 
-# Test protected endpoint without auth (should return 401)
-
+# Entry 13: Tests protected endpoint returns 401 Unauthorized without auth
 GET http://localhost:8080/protected
 Accept: text/plain
 HTTP 401
