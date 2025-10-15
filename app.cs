@@ -7,7 +7,7 @@ using var cts = new CancellationTokenSource();
 
 var serverTask = server.StartAsync(cts.Token);
 
-Console.WriteLine($"Listening on http://localhost:{port}. Press `Ctrl+C` to close server...");
+Console.WriteLine($"Listening on http://localhost:{port}. Press `Esc` to close server...");
 while (Console.ReadKey(true).Key != ConsoleKey.Escape) { }
 
 Console.WriteLine("Stopping the server...");
